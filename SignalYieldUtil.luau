@@ -25,7 +25,7 @@ function SignalYieldUtil.new(): SignalYield
     self.HasYielded = Signal.new()
 
     function self.Yield(self: SignalYield & PrivateSignalYield, yieldDuration: number)
-        CleanupUtil.InsertBin(self._yieldBin, task.spawn(function()
+        CleanupUtil.InsertBin(self._yieldBin, task.delay(yieldDuration, function()
             self.HasYielded:Fire()
         end))
     end
